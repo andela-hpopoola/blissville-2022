@@ -6,7 +6,7 @@ export async function getServerSideProps({ params, res }) {
     process.cwd(),
     'public',
     'newsletters',
-    `${params.slug}.html`
+    `${params.slug}.html`,
   );
 
   if (!fs.existsSync(filePath)) {
@@ -21,7 +21,7 @@ export async function getServerSideProps({ params, res }) {
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   res.setHeader(
     'Cache-Control',
-    'public, s-maxage=3600, stale-while-revalidate=86400'
+    'public, s-maxage=3600, stale-while-revalidate=86400',
   );
 
   res.write(html);

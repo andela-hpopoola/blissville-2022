@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Navigation from '@/components/layouts/Navigation';
 import Footer from '@/components/common/Footer';
@@ -11,6 +11,29 @@ import useWindowSize from '@/hooks/useWindowSize';
 import { Slide } from 'react-reveal';
 import { TestimonialSection } from '@/components/common/Testimonials';
 import SeoHead from '@/components/utils/SeoHead';
+import { trackEvent } from '@/utils/ga';
+
+const VARIANTS = {
+  A: {
+    heading: 'Invest Today',
+    paragraph1:
+      'Our investors comprise of a selected group of elite personalities that includes professionals in various works of life; Lawyers, manufacturers, agriculturalists, bankers, businessmen, and the list goes on.',
+    paragraph2:
+      'The unique thing about our investors is that they are very erudite & exposed individuals that can tell the difference between mediocre and true quality, words and actions.',
+    primaryCta: 'Apply Now',
+  },
+
+  B: {
+    heading: 'Why Experienced Investors Choose Blissville',
+    paragraph1:
+      'Blissville investors are seasoned professionals who understand long-term value, disciplined execution, and the importance of structured real estate investments.',
+    paragraph2:
+      'They recognize that sustainable wealth is built through well-planned projects, clear timelines, and proven delivery, not speculation or empty promises.',
+    paragraph3:
+      'This approach allows investors to grow capital confidently while managing risk.',
+    primaryCta: 'Become an Investor',
+  },
+};
 
 export default function Investors() {
   return (
@@ -51,65 +74,115 @@ export default function Investors() {
   );
 }
 
-export const InvestToday = ({ showButton }) => (
-  <Section>
-    <div className="container">
-      <Slide left>
-        <h3 className="mt-3 mt-lg-4 mb-4">Invest Today</h3>
-      </Slide>
-      <div className="row">
-        <div className="col-md-7 col-lg-7 order-1 order-md-0">
-          <Slide left>
-            <div className="pe-md-5">
-              <p className="lead">
-                Our investors comprise of a selected group of elite
-                personalities that includes professionals in various works of
-                life; Lawyers, manufacturers, agriculturalists, bankers,
-                businessmen, and the list goes on.
-              </p>
+export const InvestToday = ({ showButton }) => {
+  const [variantKey, setVariantKey] = useState(null);
 
-              <p className="lead mb-4">
-                The unique thing about our investors is that they are very
-                erudite & exposed individuals that can tell the difference
-                between mediocre and true quality, words and actions.
-              </p>
-            </div>
-          </Slide>
+  // 🔒 prevents double assignment in StrictMode
+  const hasAssignedRef = useRef(false);
 
-          <Slide left>
-            <>
-              {showButton && (
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (hasAssignedRef.current) return;
+
+    hasAssignedRef.current = true;
+
+    let storedVariant = localStorage.getItem('invest_today_variant');
+
+    if (!storedVariant || !VARIANTS[storedVariant]) {
+      storedVariant = Math.random() < 0.5 ? 'A' : 'B';
+      localStorage.setItem('invest_today_variant', storedVariant);
+    }
+
+    setVariantKey(storedVariant);
+  }, []);
+
+  // Track impression ONCE
+  useEffect(() => {
+    if (!variantKey) return;
+
+    trackEvent({
+      action: 'invest_today_variant_loaded',
+      category: 'investor_ab_test',
+      label: `variant_${variantKey}`,
+    });
+  }, [variantKey]);
+
+  if (!variantKey) return null;
+
+  const variant = VARIANTS[variantKey];
+
+  return (
+    <Section>
+      <div className="container">
+        <Slide left>
+          <h3 className="mt-3 mt-lg-4 mb-4">{variant.heading}</h3>
+        </Slide>
+
+        <div className="row">
+          <div className="col-md-7 col-lg-7 order-1 order-md-0">
+            <Slide left>
+              <div className="pe-md-5">
+                <p className="lead">{variant.paragraph1}</p>
+
+                <p className="lead mb-4">{variant.paragraph2}</p>
+
+                {variant.paragraph3 && (
+                  <p className="lead mb-4">{variant.paragraph3}</p>
+                )}
+              </div>
+            </Slide>
+
+            <Slide left>
+              <>
+                {showButton && (
+                  <Button
+                    href={`/investors`}
+                    color="secondary"
+                    className="mb-5 me-4"
+                    onClick={() =>
+                      trackEvent({
+                        action: 'invest_today_learn_more_click',
+                        category: 'investor_ab_test',
+                        label: `variant_${variantKey}`,
+                      })
+                    }
+                  >
+                    Learn More
+                  </Button>
+                )}
+
                 <Button
-                  href={`/investors`}
-                  color="secondary"
-                  className="mb-5 me-4"
+                  href={`/investors/apply`}
+                  color="primary"
+                  className="mb-5"
+                  onClick={() =>
+                    trackEvent({
+                      action: 'invest_today_apply_click',
+                      category: 'investor_ab_test',
+                      label: `variant_${variantKey}`,
+                    })
+                  }
                 >
-                  Learn More
+                  {variant.primaryCta}
                 </Button>
-              )}
-              <Button
-                href={`/investors/apply`}
-                color="primary"
-                className="mb-5"
-              >
-                Apply Now
-              </Button>
-            </>
-          </Slide>
-        </div>
-        <div className="col-md-5 col-lg-5 order-0 order-md-1 mb-5">
-          <Image
-            src="/assets/img/investors/smiling-investor.jpg"
-            alt="Hero Image"
-            width={800}
-            height={800}
-            className="img-cover rounded-2"
-          />
+              </>
+            </Slide>
+          </div>
+
+          <div className="col-md-5 col-lg-5 order-0 order-md-1 mb-5">
+            <Image
+              src="/assets/img/investors/smiling-investor.jpg"
+              alt="Hero Image"
+              width={800}
+              height={800}
+              className="img-cover rounded-2"
+            />
+          </div>
         </div>
       </div>
-    </div>
-  </Section>
-);
+    </Section>
+  );
+};
 
 const InvestmentOverview = () => {
   const { width } = useWindowSize();
