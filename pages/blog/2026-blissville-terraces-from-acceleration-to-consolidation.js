@@ -126,7 +126,7 @@ const BlogContent = () => (
     <p>
       In a major milestone, Section 1 of the Coastal Highway is now open to
       traffic, while work advances on the Omu Creek Bridge. This &ldquo;Blue
-      Economy&rdquo; link allows Blissville residents to utilize the
+      Economy&rdquo; link allows Blissville residents to utilize the&nbsp;
       <strong>€410 million</strong> &lsquo;Omi Eko&rsquo; water transport
       network, connecting the estate to the rest of Lagos via high-speed
       ferries. Furthermore, intensified activity at the Lekki-Epe International
