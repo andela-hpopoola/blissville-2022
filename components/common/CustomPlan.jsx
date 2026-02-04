@@ -135,17 +135,17 @@ const PaymentCard = ({ plan, property, billing, hideDetails }) => {
               isFlexi
                 ? 'Installment'
                 : plan.monthlyPayment
-                ? billing === 'quarterly'
-                  ? 'Quarterly Payment'
-                  : 'Monthly Payment'
-                : 'Installment'
+                  ? billing === 'quarterly'
+                    ? 'Quarterly Payment'
+                    : 'Monthly Payment'
+                  : 'Installment'
             }
             value={
               isFlexi
                 ? 'Customizable'
                 : getRecurring(plan, billing)
-                ? format(getRecurring(plan, billing))
-                : 'N/A'
+                  ? format(getRecurring(plan, billing))
+                  : 'N/A'
             }
           />
           <PlanItem
@@ -217,14 +217,11 @@ const BlissvillePaymentPlans = ({ property }) => {
       {/* Header */}
       <div className="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3 mb-3">
         <div>
-          <h4 className="fw-bold display-6 font-primary">
-            Payment Plans (Shell Package)
-          </h4>
+          <h4 className="fw-bold display-6 font-primary">Payment Plans</h4>
           <p className="text-muted">
             Choose the plan that works best for your financial schedule *.
           </p>
         </div>
-
         {/* Billing toggle */}
         <div
           className="btn-group rounded-pill border mx-auto mx-md-0 my-3"
@@ -245,6 +242,9 @@ const BlissvillePaymentPlans = ({ property }) => {
           ))}
         </div>
       </div>
+
+      {/* todo: add Center Unit, Shell Package */}
+      <h5 className="h3 mt-3 text-primary">For Center Unit, Shell Package</h5>
 
       {/* Plan cards */}
       <div className="row g-4">
