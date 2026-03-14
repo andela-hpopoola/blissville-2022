@@ -32,8 +32,8 @@ const PAYMENT_PLANS = [
     color: '#0284c7',
     colorDark: '#0369a1',
     initialPayment: 25_000_000,
-    monthlyPayment: 10_000_000,
-    durationMonths: 14,
+    monthlyPayment: 11_820_000,
+    durationMonths: 12,
   },
 ];
 
