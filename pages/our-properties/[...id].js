@@ -43,6 +43,7 @@ import { getShortDate } from '@/utils/date-helpers';
 import CompactPropertyCard from '@/components/common/CompactPropertyCard';
 import { ProjectInfoItem } from '@/components/common/ProjectHeaderSection';
 import CustomPlan from '@/components/common/CustomPlan';
+import CustomPlanReview from '@/components/common/CustomPlan2';
 import SeoHead from '@/components/utils/SeoHead';
 
 export default function SinglePropertyPage({
@@ -53,6 +54,8 @@ export default function SinglePropertyPage({
   isLandingPage = false,
 }) {
   const router = useRouter();
+
+  const isReviewMode = 'review' in router.query;
 
   // If the page is not yet generated, this will be displayed
   // initially until getStaticProps() finishes running
@@ -89,7 +92,7 @@ export default function SinglePropertyPage({
           beds || ''
         }-bedroom property in ${location}. ${description?.slice(
           0,
-          160
+          160,
         )} Enjoy energy-efficient design, ${
           parkingSpace || 'ample'
         } parking, and spacious interiors starting from ${
@@ -122,7 +125,11 @@ export default function SinglePropertyPage({
         similarProperties={similarProperties}
       />
 
-      <CustomPlan property={property} />
+      {isReviewMode ? (
+        <CustomPlanReview property={property} />
+      ) : (
+        <CustomPlan property={property} />
+      )}
 
       <Gallery
         galleries={[
@@ -304,7 +311,7 @@ const PaymentPlan = ({ property }) => {
                     {/* Loop from 6 to property.paymentPlan in multiples of 6 */}
                     {Array.from(
                       { length: property.paymentPlan / 6 },
-                      (_, i) => (i + 1) * 6
+                      (_, i) => (i + 1) * 6,
                     ).map(
                       (plan) =>
                         plan !== customPlan && (
@@ -314,7 +321,7 @@ const PaymentPlan = ({ property }) => {
                           >
                             {plan} Months
                           </Dropdown.Item>
-                        )
+                        ),
                     )}
                   </Dropdown.Menu>
                 </Dropdown>
@@ -409,7 +416,7 @@ const PaymentPlanCard = ({
   const monthlyPayment = getMonthlyPayment(
     totalPayment,
     currentInitialPayment,
-    month
+    month,
   );
 
   const updateInitialPaymentViaSlider = (value) => {
@@ -544,7 +551,7 @@ export async function getStaticProps({ params }) {
         params: {
           populate: '*',
         },
-      }
+      },
     );
     projectData = projectRes?.data || {};
   }
@@ -557,7 +564,7 @@ export async function getStaticProps({ params }) {
         'filters[project][id][$eq]': projectId,
         'filters[slug][$ne]': id,
       },
-    }
+    },
   );
 
   const featuredPropertiesRes = await axios.get(
@@ -569,7 +576,7 @@ export async function getStaticProps({ params }) {
         sort: 'createdAt:desc',
         'filters[project][id][$ne]': projectId,
       },
-    }
+    },
   );
 
   const projectRes = await axios.get(
@@ -581,7 +588,7 @@ export async function getStaticProps({ params }) {
         'filters[status][$ne]': PROJECT_STATUS.NOT_AVAILABLE,
         // 'filters[id][$ne]': projectId,
       },
-    }
+    },
   );
 
   return {
@@ -600,7 +607,7 @@ export async function getStaticPaths() {
     `${process.env.NEXT_PUBLIC_API_URL}/api/properties`,
     {
       params: { populate: '*' },
-    }
+    },
   );
   const propertyLists = res.data?.data || [];
 
@@ -609,7 +616,7 @@ export async function getStaticPaths() {
     `${process.env.NEXT_PUBLIC_API_URL}/api/projects`,
     {
       params: { populate: '*' },
-    }
+    },
   );
   const projects = projectsRes.data?.data || [];
 

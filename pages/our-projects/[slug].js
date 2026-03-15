@@ -32,6 +32,7 @@ import ReactPlayer from 'react-player';
 import CompactPropertyCard from '@/components/common/CompactPropertyCard';
 import BuyNowButton from '@/components/utils/BuyNowButton';
 import SeoHead from '@/components/utils/SeoHead';
+import FormTooltip from '@/components/forms/FormToolTip';
 
 export default function SingleProjectPage({ project, featuredProperties }) {
   const router = useRouter();
@@ -81,7 +82,7 @@ export default function SingleProjectPage({ project, featuredProperties }) {
         title={`${name} | ${type || 'Real Estate Project'}`}
         description={`Explore ${name} by Highrachy — ${description?.slice(
           0,
-          150
+          150,
         )}... Located in ${location}, offering ${type} with ${price}.`}
         canonical={canonicalUrl}
         ogImage={ogImage}
@@ -253,8 +254,13 @@ const PACKAGE = {
 
 const MAX_VISIBLE = 8;
 
-export const FeatureList = ({ project, type = PACKAGE.ALL }) => {
-  const [showAll, setShowAll] = React.useState(false);
+export const FeatureList = ({
+  project,
+  oneFeaturePerLine = false,
+  type = PACKAGE.ALL,
+  showAllByDefault = false,
+}) => {
+  const [showAll, setShowAll] = React.useState(showAllByDefault);
 
   const featuresByPackage = {
     [PACKAGE.SHELL]: project.features,
@@ -264,6 +270,7 @@ export const FeatureList = ({ project, type = PACKAGE.ALL }) => {
 
   // Flatten and normalize feature list
   const allFeatures = [];
+
   Object.entries(featuresByPackage).forEach(([key, value], index) => {
     value?.split(',').forEach((feature) => {
       const trimmed = feature.trim();
@@ -277,9 +284,10 @@ export const FeatureList = ({ project, type = PACKAGE.ALL }) => {
     });
   });
 
-  const visibleFeatures = showAll
-    ? allFeatures
-    : allFeatures.slice(0, MAX_VISIBLE);
+  const visibleFeatures =
+    showAll || showAllByDefault
+      ? allFeatures
+      : allFeatures.slice(0, MAX_VISIBLE);
 
   return (
     <>
@@ -287,7 +295,8 @@ export const FeatureList = ({ project, type = PACKAGE.ALL }) => {
         {visibleFeatures.map(({ key, text, pkg }) => (
           <li
             key={key}
-            className={classNames('col-md-6', {
+            className={classNames({
+              'col-md-6': !oneFeaturePerLine,
               invalid:
                 type !== PACKAGE.ALL &&
                 ((type === PACKAGE.SHELL && pkg !== PACKAGE.SHELL) ||
@@ -297,22 +306,22 @@ export const FeatureList = ({ project, type = PACKAGE.ALL }) => {
             })}
           >
             {text}
-            {/* Optionally uncomment tooltip */}
-            {/* <FormTooltip
+
+            <FormTooltip
               text={
                 pkg === PACKAGE.SHELL
                   ? 'Available in all packages'
                   : pkg === PACKAGE.STANDARD
-                  ? 'Available in Standard and Supreme Packages'
-                  : 'Available in Supreme Package only'
+                    ? 'Available in Finished and Grand Packages'
+                    : 'Available in Grand Package only'
               }
               position="top"
-            /> */}
+            />
           </li>
         ))}
       </ul>
 
-      {allFeatures.length > MAX_VISIBLE && (
+      {!showAllByDefault && allFeatures.length > MAX_VISIBLE && (
         <div className="mt-3">
           <Button
             color="primary-light"
@@ -486,9 +495,21 @@ export function VideoContainer({
   };
 
   const modal = (
-    <Modal show={isFullscreen} onHide={onHideModal} size="xl" title="Video" showFooter={false}>
+    <Modal
+      show={isFullscreen}
+      onHide={onHideModal}
+      size="xl"
+      title="Video"
+      showFooter={false}
+    >
       <div style={{ width: '100%', height: '70vh' }}>
-        <ReactPlayer url={videoURL} width="100%" height="100%" controls playing={modalPlaying} />
+        <ReactPlayer
+          url={videoURL}
+          width="100%"
+          height="100%"
+          controls
+          playing={modalPlaying}
+        />
       </div>
     </Modal>
   );
@@ -537,7 +558,7 @@ export function NeighborhoodList({ neighborhoods }) {
                 </div>
               </div>
             </li>
-          )
+          ),
         )}
       </ul>
 
@@ -680,7 +701,7 @@ export const Gallery = ({ galleries, className }) => {
                 ))}
               </div>
             </div>
-          )
+          ),
         )}
       </div>
     </Section>
@@ -689,14 +710,14 @@ export const Gallery = ({ galleries, className }) => {
 
 export async function getStaticProps({ params }) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/projects?populate=*&filters[slug][$eq]=${params.slug}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/projects?populate=*&filters[slug][$eq]=${params.slug}`,
   );
 
   let { data } = await res.json();
 
   if (!data || data.length === 0) {
     const resAll = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/projects?populate=*&sort=createdAt:desc`
+      `${process.env.NEXT_PUBLIC_API_URL}/api/projects?populate=*&sort=createdAt:desc`,
     );
     const { data: allData } = await resAll.json();
     data = allData;
@@ -712,7 +733,7 @@ export async function getStaticProps({ params }) {
         'filters[project][id][$ne]': data[0].id,
         'filters[status][$eq]': PROPERTY_STATUS.ACTIVE,
       },
-    }
+    },
   );
 
   return {
