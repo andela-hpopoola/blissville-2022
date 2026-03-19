@@ -19,6 +19,7 @@ import { UserContext } from 'context/user';
 import Button from '../forms/Button';
 
 const BuyNowButton = ({
+  color = 'success',
   className,
   price,
   paymentPlan,
@@ -26,6 +27,7 @@ const BuyNowButton = ({
   property,
   packageName,
   children,
+  unitType = '*Center',
 }) => {
   const { user } = useContext(UserContext);
   const referredBy = getReferralFromStore();
@@ -37,7 +39,7 @@ const BuyNowButton = ({
       paymentPlan,
       initialPayment,
       property: property.id,
-      package: packageName,
+      package: `${packageName} - ${unitType}`,
       referredBy: referredBy?.id,
     };
 
@@ -66,7 +68,7 @@ const BuyNowButton = ({
 
   return (
     <FormikModalButton
-      color="success"
+      color={color}
       className={`btn text-white ${className}`}
       name="schedule-visit"
       schema={interestSchema}
@@ -79,6 +81,7 @@ const BuyNowButton = ({
           initialPayment={initialPayment}
           property={property}
           packageName={packageName}
+          unitType={unitType}
           user={user}
         />
       }
@@ -96,12 +99,14 @@ const InterestForm = ({
   paymentPlan,
   initialPayment,
   property,
-  packageName,
+  packageName = '*Shell',
   user,
+  unitType = '*Center',
 }) => {
   const { image, name } = property;
   const [showForm, setShowForm] = React.useState(false);
-  const monthlyPayment = getMonthlyPayment(price, paymentPlan, initialPayment);
+  const monthlyPayment = getMonthlyPayment(price, initialPayment, paymentPlan);
+  console.log('Monthly Payment', monthlyPayment);
 
   return (
     <div className="container">
@@ -116,7 +121,7 @@ const InterestForm = ({
           />
           <h5>{name}</h5>
           <p className="mb-3 mt-n2 text-sm text-muted">
-            {packageName} ({getPaymentPlan(paymentPlan)})
+            {packageName.toUpperCase()} ({unitType.toUpperCase()} UNIT)
           </p>
         </div>
         <div className="table-responsive">
@@ -134,12 +139,16 @@ const InterestForm = ({
                 <td>Initial Payment</td>
                 <td>{moneyFormatInNaira(initialPayment)}</td>
               </tr>
-              {monthlyPayment <= 1 && (
+              {monthlyPayment !== 0 && (
                 <tr>
                   <td>Monthly Payment</td>
                   <td>{monthlyPayment}</td>
                 </tr>
               )}
+              <tr>
+                <td>Duration</td>
+                <td>{getPaymentPlan(paymentPlan)}</td>
+              </tr>
             </tbody>
           </table>
         </div>

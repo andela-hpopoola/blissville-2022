@@ -648,7 +648,7 @@ export async function getStaticProps({ params }) {
   if (projectId) {
     const projectRes = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/api/projects/${projectId}`,
-      { params: { populate: '*' } }
+      { params: { populate: '*' } },
     );
     projectData = projectRes?.data || {};
   }
@@ -661,7 +661,7 @@ export async function getStaticProps({ params }) {
         'filters[project][id][$eq]': projectId,
         'filters[slug][$ne]': id,
       },
-    }
+    },
   );
 
   const featuredPropertiesRes = await axios.get(
@@ -673,7 +673,7 @@ export async function getStaticProps({ params }) {
         sort: 'createdAt:desc',
         'filters[project][id][$ne]': projectId,
       },
-    }
+    },
   );
 
   const projectRes = await axios.get(
@@ -684,7 +684,7 @@ export async function getStaticProps({ params }) {
         sort: 'createdAt:desc',
         'filters[status][$ne]': PROJECT_STATUS.NOT_AVAILABLE,
       },
-    }
+    },
   );
 
   return {
