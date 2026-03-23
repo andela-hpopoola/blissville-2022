@@ -1,0 +1,163 @@
+/* eslint-disable @next/next/no-img-element */
+import React from 'react';
+import Image from 'next/image';
+import Navigation from '@/components/layouts/Navigation';
+import Footer from '@/components/common/Footer';
+import SeoHead from '@/components/utils/SeoHead';
+import { PageHeader } from '@/components/common/Header';
+import ScheduleVisit from '@/components/common/ScheduleVisit';
+import Link from 'next/link';
+
+export default function BlissvilleSanctuaryBlog() {
+  return (
+    <>
+      <SeoHead
+        title="The Value of Peace of Mind - Your Home Should Be a Sanctuary | Blissville"
+        description="A home should be more than shelter. Discover how Blissville designs homes that bring comfort, security, and true peace of mind."
+        canonical="https://www.blissville.com.ng/blog/value-of-peace-of-mind"
+        ogImage="/assets/img/blog/blissville-sanctuary.jpg"
+      />
+
+      <Navigation />
+
+      <PageHeader
+        title="The Value of Peace of Mind"
+        subHeader="Your Home Should Be a Sanctuary"
+        bgImage="/assets/img/blog/blissville-sanctuary.jpg"
+      />
+
+      <ArticleWrapper>
+        <BlogCoverImage />
+        <BlogContent />
+      </ArticleWrapper>
+
+      <ScheduleVisit />
+      <Footer />
+    </>
+  );
+}
+
+/* -----------------------------------------------------
+   MEDIUM-STYLE WRAPPER
+------------------------------------------------------- */
+const ArticleWrapper = ({ children }) => (
+  <div
+    className="container"
+    style={{
+      maxWidth: '800px',
+      paddingTop: '3rem',
+      paddingBottom: '3rem',
+      lineHeight: '1.85',
+      fontSize: '1.15rem',
+    }}
+  >
+    {children}
+  </div>
+);
+
+/* -----------------------------------------------------
+   COVER IMAGE
+------------------------------------------------------- */
+const BlogCoverImage = () => (
+  <div className="mb-5">
+    <Image
+      src="/assets/img/blog/blissville-sanctuary.jpg"
+      alt="The Value of Peace of Mind - Your Home Should Be a Sanctuary"
+      width={1800}
+      height={1200}
+      className="rounded-3 shadow-sm"
+      style={{ width: '100%', height: 'auto' }}
+    />
+  </div>
+);
+
+/* -----------------------------------------------------
+   BLOG CONTENT
+------------------------------------------------------- */
+const BlogContent = () => (
+  <article>
+    <h2 className="fw-bold mb-4">
+      The Value of Peace of Mind &mdash; Your Home Should Be a Sanctuary
+    </h2>
+
+    <p>The bliss in our name, Blissville, is deliberate.</p>
+
+    <p>
+      As a brand, our core mandate is to champion the idea that living should be
+      blissful. Shelter should not be merely a box checked on Maslow&rsquo;s
+      hierarchy of needs. It should enrich every other aspect of life, because
+      when you live well, half of life&rsquo;s challenges are already eased.
+    </p>
+
+    <p>
+      Your home should be your sanctuary. It should be steady, assured, and
+      designed with care so that when you close the door at the end of the day,
+      you can finally exhale.
+    </p>
+
+    <h3 className="fw-bold mt-5 mb-3">Where True Comfort Begins</h3>
+
+    <p>
+      Truly great homes are built around human wellbeing. They anticipate your
+      needs, solve problems before they arise, and create environments where
+      daily life works effortlessly.
+    </p>
+
+    <p>
+      Reliable power, secure surroundings, thoughtful layouts, and green,
+      calming spaces come together to restore energy and sharpen focus.
+      Infrastructure is not a bonus; it is the foundation for peace.
+    </p>
+
+    <p>
+      Living well should not feel like a struggle. A home should remove
+      obstacles rather than add them.
+    </p>
+
+    <h3 className="fw-bold mt-5 mb-3">The Foundations of Peace of Mind</h3>
+
+    <p>
+      Additionally, we place strong emphasis on the fundamentals that sustain
+      long-term peace of mind. Structural stability is non-negotiable, with
+      every development grounded in sound engineering and quality construction
+      that ensures durability and safety over time. We also prioritize good
+      title and clear ownership, backed by transparent documentation that
+      protects homeowners and preserves value.
+    </p>
+
+    <p>
+      Full statutory compliance remains central to our process, ensuring that
+      every project aligns with required approvals, planning regulations, and
+      building standards. At the same time, our developments are designed to
+      foster a sense of community, creating environments where people feel
+      connected, secure, and at ease, while incorporating environmentally
+      conscious practices that promote sustainability and responsible living.
+    </p>
+
+    <h3 className="fw-bold mt-5 mb-3">More Than a Home</h3>
+
+    <p>
+      Blissville is about more than homes. It is a way of living that
+      prioritizes comfort, safety, and foresight. It is a lifestyle that values
+      human wellbeing, designs for the future, and pays attention to the details
+      others often overlook. When a living space is carefully engineered for
+      comfort, security, and peace, life becomes simpler, richer, and more
+      rewarding.
+    </p>
+
+    <h3 className="fw-bold mt-5 mb-3">Your Sanctuary Awaits</h3>
+
+    <p>
+      A home that supports your life becomes more than a shelter. It becomes a
+      sanctuary, a place where you can recharge, reflect, and grow. There is no
+      greater wealth than that.
+    </p>
+
+    <p>
+      Blissville designs homes with that belief at the heart of everything we
+      do. Visit our website,{' '}
+      <Link href="https://www.blissville.com.ng">blissville.com.ng</Link>, to
+      get started on securing your very own sanctuary.
+    </p>
+  </article>
+);

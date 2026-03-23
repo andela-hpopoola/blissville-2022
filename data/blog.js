@@ -32,5 +32,14 @@ const BLOG_POSTS = [
     image: '/assets/img/blog/blissville-terraces-2026.jpg',
     slug: '/blog/2026-blissville-terraces-from-acceleration-to-consolidation',
   },
+  {
+    id: 5,
+    title: 'The Value of Peace of Mind - Your Home Should Be a Sanctuary',
+    excerpt:
+      'A home should be more than shelter. Discover how thoughtful design, strong foundations, and secure ownership create true peace of mind.',
+    image: '/assets/img/blog/blissville-sanctuary.jpg',
+    slug: '/blog/the-value-of-peace-of-mind',
+  },
 ];
+
 export default BLOG_POSTS;

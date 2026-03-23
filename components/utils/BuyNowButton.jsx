@@ -21,13 +21,14 @@ import Button from '../forms/Button';
 const BuyNowButton = ({
   color = 'success',
   className,
-  price,
   paymentPlan,
   initialPayment,
   property,
+  price = property?.price,
   packageName,
   children,
   unitType = '*Center',
+  isFlexi = false,
 }) => {
   const { user } = useContext(UserContext);
   const referredBy = getReferralFromStore();
@@ -83,6 +84,7 @@ const BuyNowButton = ({
           packageName={packageName}
           unitType={unitType}
           user={user}
+          isFlexi={isFlexi}
         />
       }
       handleSubmit={handleSubmit}
@@ -96,17 +98,18 @@ export default BuyNowButton;
 
 const InterestForm = ({
   price,
-  paymentPlan,
+  paymentPlan = 12,
   initialPayment,
   property,
   packageName = '*Shell',
   user,
   unitType = '*Center',
+  isFlexi = false,
 }) => {
   const { image, name } = property;
   const [showForm, setShowForm] = React.useState(false);
   const monthlyPayment = getMonthlyPayment(price, initialPayment, paymentPlan);
-  console.log('Monthly Payment', monthlyPayment);
+  console.log({ packageName, unitType, isFlexi, monthlyPayment });
 
   return (
     <div className="container">
@@ -130,24 +133,30 @@ const InterestForm = ({
               <tr>
                 <th>Price</th>
                 <th className="text-primary text-xl fw-bold">
-                  {moneyFormatInNaira(price)}
+                  {isFlexi && 'From '} {moneyFormatInNaira(price)}
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>Initial Payment</td>
-                <td>{moneyFormatInNaira(initialPayment)}</td>
+                <td>
+                  {isFlexi
+                    ? 'Customizable'
+                    : moneyFormatInNaira(initialPayment)}
+                </td>
               </tr>
               {monthlyPayment !== 0 && (
                 <tr>
                   <td>Monthly Payment</td>
-                  <td>{monthlyPayment}</td>
+                  <td>{isFlexi ? 'Customizable ' : monthlyPayment}</td>
                 </tr>
               )}
               <tr>
                 <td>Duration</td>
-                <td>{getPaymentPlan(paymentPlan)}</td>
+                <td>
+                  {isFlexi ? 'Customizable' : getPaymentPlan(paymentPlan)}
+                </td>
               </tr>
             </tbody>
           </table>

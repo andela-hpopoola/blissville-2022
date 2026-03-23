@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import BuyNowButton from '../utils/BuyNowButton';
-import ProjectInterestModal from './ProjectInterestModal';
 import Button from '../forms/Button';
 import Modal from '@/components/ui/Modal';
 import { FeatureList } from 'pages/our-projects/[slug]';
@@ -217,6 +216,7 @@ const PaymentCard = ({ plan, property, hideDetails, unitType }) => {
           price={plan.total}
           packageName={`${PACKAGE_LABELS[plan.packageName]}`}
           unitType={unitType}
+          isFlexi={isFlexi}
         />
       </div>
     </div>
@@ -291,7 +291,10 @@ const BlissvillePaymentPlans = ({ property }) => {
       color: '#00903f',
       colorDark: '#007031',
       customizable: true,
+      durationMonths: 0,
       totalFrom: outrightPrice,
+      total: outrightPrice,
+      packageName: packageType,
     },
   ];
 
