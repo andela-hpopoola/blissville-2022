@@ -43,7 +43,7 @@ export default function BlogSection({
                 </div>
 
                 <div className="blog-card-body d-flex flex-column">
-                  <h5 className="fw-bold mb-2">{post.title}</h5>
+                  <h5 className="fw-bold font-primary mb-2">{post.title}</h5>
 
                   <p className="text-muted mb-4">{post.excerpt}</p>
 

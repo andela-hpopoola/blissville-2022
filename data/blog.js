@@ -26,7 +26,7 @@ const BLOG_POSTS = [
   },
   {
     id: 4,
-    title: '2026: Blissville Terraces—From Acceleration to Consolidation',
+    title: '2026: Blissville Terraces - From Acceleration to Consolidation',
     excerpt:
       'A 2026 outlook on Blissville Terraces as acceleration gives way to consolidation, infrastructure delivery, and peak investment opportunity.',
     image: '/assets/img/blog/blissville-terraces-2026.jpg',
@@ -39,6 +39,14 @@ const BLOG_POSTS = [
       'A home should be more than shelter. Discover how thoughtful design, strong foundations, and secure ownership create true peace of mind.',
     image: '/assets/img/blog/blissville-sanctuary.jpg',
     slug: '/blog/the-value-of-peace-of-mind',
+  },
+  {
+    id: 6,
+    title: 'The "Blue Bliss": Why Your Next Investment Should Breathe',
+    excerpt:
+      'Experience waterfront living that combines peace, wellness, and strong investment returns. Discover why "Blue Bliss" is more than a view, it is a lifestyle.',
+    image: '/assets/img/blog/the-blue-bliss.jpg',
+    slug: '/blog/the-blue-bliss-why-your-next-investment-should-breathe',
   },
 ];
 

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import ReactPlayer from 'react-player';
+import { toast } from 'react-toastify';
 
 import { PROJECT_STATUS } from '@/utils/constants';
 import Navigation from '@/components/layouts/Navigation';
@@ -18,7 +19,11 @@ import ScheduleVisit from '@/components/common/ScheduleVisit';
 import Footer from '@/components/common/Footer';
 import Section from '@/components/common/Section';
 import Button from '@/components/forms/Button';
-import { moneyFormatInNaira } from '@/utils/helpers';
+import {
+  getError,
+  moneyFormatInNaira,
+  statusIsSuccessful,
+} from '@/utils/helpers';
 import ProjectInterestModal from '@/components/common/ProjectInterestModal';
 
 import {
@@ -55,7 +60,7 @@ import {
 import { ImQuotesRight } from 'react-icons/im';
 import faqs from '@/data/faqs';
 import SeoHead from '@/components/utils/SeoHead';
-import { FaCheckCircle } from 'react-icons/fa';
+import { FaCheckCircle, FaSpinner } from 'react-icons/fa';
 
 const AMENITY_ITEMS = [
   { label: '24/7 Security', icon: FaShieldHalved },
@@ -230,7 +235,7 @@ const OverviewSection = ({ property }) => (
 
           <div className="mt-4">
             <a
-              className="d-flex text-muted text-link align-items-center gap-3 text-decoration-none"
+              className="d-flex text-primary-700 align-items-center gap-3 text-decoration-none"
               href="#exclusive-guide"
             >
               <span className="fs-1">
@@ -448,18 +453,44 @@ const ReviewsSection = () => {
 const ExclusiveGuide = ({ projectName = 'Blissville Terraces' }) => {
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', phone: '' });
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    const link = document.createElement('a');
-    link.href = '/docs/beyond-the-hype.pdf';
-    link.download = 'Blissville-Exclusive-Guide.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    const payload = {
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      subject: 'Exclusive Guide Download',
+      message: `User downloaded the exclusive guide for ${projectName}`,
+      source: 'Exclusive Guide',
+      reference: projectName,
+    };
 
-    setSent(true);
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/contacts`,
+        { data: payload },
+      );
+
+      if (statusIsSuccessful(response.status)) {
+        toast.success('Preparing your guide...');
+        setSent(true);
+
+        const link = document.createElement('a');
+        link.href = '/docs/beyond-the-hype.pdf';
+        link.download = 'Blissville-Exclusive-Guide.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    } catch (error) {
+      toast.error(getError(error));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -515,8 +546,18 @@ const ExclusiveGuide = ({ projectName = 'Blissville Terraces' }) => {
                   <button
                     className="btn btn-primary text-white text-sm"
                     type="submit"
+                    disabled={loading}
                   >
-                    <FaFilePdf className="ms-2" /> Download Free Guide
+                    {loading ? (
+                      <>
+                        <span className="spinner-border spinner-border-sm me-2" />{' '}
+                        Preparing...
+                      </>
+                    ) : (
+                      <>
+                        <FaFilePdf className="ms-2" /> Download Free Guide
+                      </>
+                    )}
                   </button>
                 </div>
                 <div className="col-12">

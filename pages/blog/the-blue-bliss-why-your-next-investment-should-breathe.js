@@ -1,0 +1,205 @@
+/* eslint-disable @next/next/no-img-element */
+import React from 'react';
+import Image from 'next/image';
+import Navigation from '@/components/layouts/Navigation';
+import Footer from '@/components/common/Footer';
+import SeoHead from '@/components/utils/SeoHead';
+import { PageHeader } from '@/components/common/Header';
+import ScheduleVisit from '@/components/common/ScheduleVisit';
+
+export default function BlueBlissInvestment() {
+  return (
+    <>
+      <SeoHead
+        title='The "Blue Bliss": Why Your Next Investment Should Breathe | Blissville'
+        description="Discover the 'Blue Bliss' lifestyle at Blissville Terraces &mdash; where waterfront living meets peace of mind, wellness, and high-yield investment potential."
+        canonical="https://www.blissville.com.ng/blog/the-blue-bliss-why-your-next-investment-should-breathe"
+        ogImage="/assets/img/blog/the-blue-bliss.jpg"
+      />
+
+      <Navigation />
+
+      <PageHeader
+        title='The "Blue Bliss": Why Your Next Investment Should Breathe'
+        bgImage="/assets/img/blog/the-blue-bliss.jpg"
+      />
+
+      <ArticleWrapper>
+        <BlogCoverImage />
+        <BlogContent />
+      </ArticleWrapper>
+
+      <ScheduleVisit />
+      <Footer />
+    </>
+  );
+}
+
+/* -----------------------------------------------------
+   MEDIUM-STYLE WRAPPER
+------------------------------------------------------- */
+const ArticleWrapper = ({ children }) => (
+  <div
+    className="container"
+    style={{
+      maxWidth: '800px',
+      paddingTop: '3rem',
+      paddingBottom: '3rem',
+      lineHeight: '1.85',
+      fontSize: '1.15rem',
+    }}
+  >
+    {children}
+  </div>
+);
+
+/* -----------------------------------------------------
+   COVER IMAGE
+------------------------------------------------------- */
+const BlogCoverImage = () => (
+  <div className="mb-5">
+    <Image
+      src="/assets/img/blog/the-blue-bliss.jpg"
+      alt='The "Blue Bliss": Waterfront Living at Blissville Terraces'
+      width={1920}
+      height={1080}
+      className="rounded-3 shadow-sm"
+      style={{ width: '100%', height: 'auto' }}
+    />
+  </div>
+);
+
+/* -----------------------------------------------------
+   BLOG CONTENT
+------------------------------------------------------- */
+const BlogContent = () => (
+  <article>
+    <h2 className="fw-bold mb-4">
+      The &ldquo;Blue Bliss&rdquo;: Why Your Next Investment Should Breathe
+    </h2>
+
+    <p>
+      In the chaotic heart of Lagos, where the pulse of the city never seems to
+      skip a beat, we often find ourselves searching for something more than
+      just a roof. We search for Peace.
+    </p>
+
+    <p>
+      While many real estate projects offer &ldquo;man-made&rdquo; lakes,
+      Blissville Terraces, located within the prestigious Caribbean Lake City
+      Estate in Sangotedo, offers something different:{' '}
+      <strong>The Blue Bliss</strong>. This isn&rsquo;t just a view; it&rsquo;s
+      a lifestyle tuned to the natural, refreshing rhythm of the tide.
+    </p>
+
+    <p>
+      <strong>And while the water follows its natural pulse</strong>, this
+      isn&rsquo;t just a view; it&rsquo;s a lifestyle dictated by the natural,
+      flowing rhythm of the water.
+    </p>
+
+    <p>
+      While the water follows its natural pulse, our engineering is rock-solid.
+      Blissville is built on elevated, reinforced terrain, ensuring you enjoy
+      the beauty of the tide with absolute peace of mind.
+    </p>
+
+    <h3 className="fw-bold mt-5 mb-3">A Sanctuary for the Soul</h3>
+
+    <p>
+      Imagine waking up to the peaceful sound of the Omu Creek instead of noisy
+      sirens and traffic. Unlike a fake, still pond, this water is
+      &ldquo;alive&rdquo;&mdash;it moves and refreshes itself every single day
+      with the tide.
+    </p>
+
+    <p>
+      Science shows that being near moving water actually changes how your brain
+      works, making you feel instantly calmer. At Blissville, you aren&apos;t
+      just buying a house; you&rsquo;re buying a lifestyle that helps you:
+    </p>
+
+    <ul>
+      <li>
+        <strong>Mental Clarity:</strong> Let the natural aeration and the scent
+        of fresh water wash away the day&apos;s cortisol.
+      </li>
+      <li>
+        <strong>Natural Cooling:</strong> Feel the temperature drop as the
+        moving water acts as a natural heat sink, offering a cool, breezy
+        micro-climate that makes your terrace the ultimate meditation spot.
+      </li>
+    </ul>
+
+    <h3 className="fw-bold mt-5 mb-3">
+      2. The Investor&rsquo;s Edge: High-Yield Serenity
+    </h3>
+
+    <p>
+      For the savvy investor, &ldquo;Blue Bliss&rdquo; isn&rsquo;t just a poetic
+      phrase &mdash; it&rsquo;s a profit margin. In a market saturated with
+      identical blocks of flats, scarcity is the ultimate driver of value.
+    </p>
+
+    <ul>
+      <li>
+        <strong>The Shortlet Goldmine:</strong> Modern travelers and
+        &ldquo;staycationers&rdquo; are fleeing the noise of the city. They are
+        hunting for &ldquo;resort-style&rdquo; living. A waterfront terrace at
+        Blissville isn&rsquo;t just a home; it&apos;s a high-demand destination
+        that commands premium nightly rates.
+      </li>
+      <li>
+        <strong>Appreciating Value:</strong> Natural waterfront land is finite.
+        As Sangotedo continues its rapid ascent, a property that
+        &ldquo;breathes&rdquo; with the creek will always outpace the resale
+        value of a standard inland duplex.
+      </li>
+      <li>
+        <strong>Built for Resilience:</strong> Our engineering is as deep as our
+        views. We&rsquo;ve built on elevated, reinforced terrain. You get the
+        soul-soothing beauty of the tide with the absolute peace of mind that
+        your investment remains high, dry, and secure.
+      </li>
+    </ul>
+
+    <h3 className="fw-bold mt-5 mb-3">3. Where Ambition Meets Quietude</h3>
+
+    <p>
+      Blissville Terraces sits at the perfect intersection of high-octane Lagos
+      life and secluded natural wonder. You aren&rsquo;t sacrificing your
+      lifestyle; you&rsquo;re upgrading its backdrop.
+    </p>
+
+    <ul>
+      <li>
+        <strong>The Intellectual Corridor:</strong> Minutes from Lagos Business
+        School (LBS) and Pan-Atlantic University, this is the home of choice for
+        the city&apos;s academic and corporate elite.
+      </li>
+      <li>
+        <strong>Retail &amp; Vitality:</strong> From morning sessions at
+        i-Fitness to evening grocery runs at <strong>Novare Mall</strong>,
+        everything you need is within a five-minute radius.
+      </li>
+      <li>
+        <strong>Recreational Haven:</strong> Whether it&apos;s a weekend at Omu
+        Resort or a quiet afternoon at the Green Fingers Wildlife Conservation,
+        your backyard is a gateway to the best recreation Lagos has to offer.
+      </li>
+    </ul>
+
+    <h3 className="fw-bold mt-5 mb-3">Your Legacy, Refined</h3>
+
+    <p>
+      Standard luxury is bought; <strong>&ldquo;Blue Bliss&rdquo;</strong> is
+      experienced. Blissville Terraces offers you more than an asset; it offers
+      you a life where the views soothe your soul and the returns secure your
+      future.
+    </p>
+
+    <p className="fw-bold lead mb-7">
+      Stop buying property. Start investing in peace of mind.
+    </p>
+  </article>
+);
