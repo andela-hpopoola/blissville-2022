@@ -31,6 +31,7 @@ export const insights = {
   children: {
     '/blog': 'Articles & Insights',
     '/faqs': 'FAQs',
+    '/beyond-the-hype': 'Beyond the Hype Guide',
   },
 };
 

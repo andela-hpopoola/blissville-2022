@@ -61,6 +61,7 @@ import { ImQuotesRight } from 'react-icons/im';
 import faqs from '@/data/faqs';
 import SeoHead from '@/components/utils/SeoHead';
 import { FaCheckCircle, FaSpinner } from 'react-icons/fa';
+import Link from 'next/link';
 
 const AMENITY_ITEMS = [
   { label: '24/7 Security', icon: FaShieldHalved },
@@ -229,23 +230,24 @@ const OverviewSection = ({ property }) => (
           <p className="mt-3">
             Blissville Terraces blends modern architecture with smart,
             energy-efficient systems in an eco-friendly, connected community.
-            Enjoy lakeside calm with city convenience—schools, shopping, gyms,
+            Enjoy lakeside calm with city convenience - schools, shopping, gyms,
             and transport are moments away.
           </p>
 
           <div className="mt-4">
-            <a
-              className="d-flex text-primary-700 align-items-center gap-3 text-decoration-none"
-              href="#exclusive-guide"
-            >
-              <span className="fs-1">
-                <FaFilePdf />
-              </span>
-              <span>
-                <div className="small">Get our Free Guide:</div>
-                <div className="fw-bold">Beyond the Hype of Modern Housing</div>
-              </span>
-            </a>
+            <Link href="/beyond-the-hype#exclusive-guide" passHref>
+              <a className="d-flex text-primary-700 align-items-center gap-3 text-decoration-none">
+                <span className="fs-1">
+                  <FaFilePdf />
+                </span>
+                <span>
+                  <div className="small">Get our Free Guide:</div>
+                  <div className="fw-bold">
+                    Beyond the Hype of Modern Housing
+                  </div>
+                </span>
+              </a>
+            </Link>
           </div>
         </div>
 
@@ -661,7 +663,6 @@ export default function SingleProjectPage({ property }) {
         </div>
       </Section>
 
-      <ExclusiveGuide />
       <LocationMapSection
         locationMapURL={project?.locationMapURL}
         name={project?.name}

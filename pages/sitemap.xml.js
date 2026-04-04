@@ -13,6 +13,8 @@ export async function getServerSideProps({ res }) {
     '/faqs',
     '/contact-us',
     '/privacy-policy',
+    '/blissville-terraces',
+    '/beyond-the-hype',
     '/our-properties/blissville-apartments/4-bedroom-apartments',
     '/our-properties/blissville-apartments/4-bedroom-waterview-terrace-duplex',
     '/our-properties/blissville-apartments/3-bedroom-apartments',
@@ -29,7 +31,7 @@ export async function getServerSideProps({ res }) {
           <changefreq>weekly</changefreq>
           <priority>0.8</priority>
         </url>
-      `
+      `,
       )
       .join('')}
   </urlset>`;
