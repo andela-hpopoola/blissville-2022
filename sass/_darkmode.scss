@@ -33,6 +33,25 @@
   --bs-border-color: rgba(255, 255, 255, 0.08) !important;
   --bs-border-color-translucent: rgba(255, 255, 255, 0.05) !important;
 
+  /* Keep tables readable: the light $table-striped-bg would otherwise make
+     striped rows near-white with white text (only readable on hover). */
+  .table {
+    --bs-table-color: var(--bs-body-color);
+    --bs-table-bg: var(--bs-body-bg);
+    --bs-table-border-color: var(--bs-border-color-translucent);
+    --bs-table-striped-bg: rgba(255, 255, 255, 0.06);
+    --bs-table-striped-color: var(--bs-body-color);
+    --bs-table-active-bg: rgba(105, 136, 191, 0.18);
+    --bs-table-active-color: var(--bs-body-color);
+    --bs-table-hover-bg: rgba(105, 136, 191, 0.12);
+    --bs-table-hover-color: var(--bs-body-color);
+
+    tbody td,
+    tbody th {
+      color: var(--bs-body-color);
+    }
+  }
+
   /* 1. Typography Overrides */
 
   /* Target all custom hardcoded text classes and reset them to adapt */
