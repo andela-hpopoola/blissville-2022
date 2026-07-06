@@ -7,6 +7,7 @@
 import { BVT3DImages } from './renders';
 import { CLCImages } from './community';
 import { BVTInterior } from './interior';
+import { CLCWellness } from './wellness';
 
 export const PROJECT_GALLERIES = [
   {
@@ -14,11 +15,11 @@ export const PROJECT_GALLERIES = [
     id: 'renders',
     filter: 'renders',
     title: '3D Renders',
-    date: 'Design Phase',
+    date: '',
     heading: 'Designed Before\nIt Was Built',
     subheading: 'Architectural Vision',
     description:
-      'Every great development begins with a vision. These architectural visualizations capture the design intent, showcasing the timeless elegance, modern luxury, and waterfront lifestyle that define Blissville Terraces long before construction begins.',
+      'Every exceptional home begins with thoughtful design. These architectural visualizations reveal the vision behind Blissville Terraces, where contemporary architecture, efficient layouts, and timeless finishes come together to create homes that are beautiful to own, comfortable to live in, and built to retain lasting value.',
     images: BVT3DImages,
   },
 
@@ -27,25 +28,40 @@ export const PROJECT_GALLERIES = [
     id: 'community',
     filter: 'community',
     title: 'Masterplan & Amenities',
-    date: 'Master-Planned Community',
+    date: '',
     heading: 'Life Beyond\nYour Front Door',
     subheading: 'Caribbean Lake City',
     description:
-      'Blissville Terraces is nestled within Caribbean Lake City—a thoughtfully planned waterfront destination featuring landscaped boulevards, recreational spaces, premium amenities, and a vibrant environment designed for exceptional everyday living.',
+      'Your home extends far beyond your front door. Wide landscaped streets, secure entrances, family parks, beautiful public spaces, and a thoughtfully planned neighbourhood create an environment where residents can enjoy peace of mind, stronger community, and a better quality of life every day.',
     images: CLCImages,
     reversed: true,
   },
+
   {
     type: 'primary',
     id: 'interior',
     filter: 'interior',
-    title: 'Interior Design',
-    date: 'Interior Preview',
+    title: 'ProposedInterior Design',
+    date: '',
     heading: 'Crafted For\nModern Living',
     subheading: 'Luxury From Within',
     description:
-      'Every interior is carefully designed to combine elegance, comfort, and functionality. From spacious living areas to beautifully finished kitchens and bedrooms, every detail has been curated to create a refined living experience.',
+      'Every room is designed around the way modern families live. Premium finishes, functional kitchens, and elegant bedrooms combine to create a home that is as practical as it is beautiful, making everyday living more comfortable, effortless, and enjoyable.',
     images: BVTInterior,
+  },
+
+  {
+    type: 'alt',
+    id: 'wellness',
+    filter: 'wellness',
+    title: 'Wellness & Lifestyle',
+    date: '',
+    heading: 'Wellness For\nEveryday Living',
+    subheading: 'Resort-Inspired Experiences',
+    description:
+      'A truly exceptional community supports every part of your lifestyle. Relax by the waterfront, spend time with family in beautifully landscaped parks, stay active in the wellness centre, enjoy the marina and retail destination, or simply unwind by the pool. Every amenity has been carefully planned to help residents live healthier, happier, and more connected lives.',
+    images: CLCWellness,
+    reversed: true,
   },
 ];
 
