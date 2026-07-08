@@ -84,7 +84,7 @@ function HeroSection() {
         </h1>
 
         <p className="cl-hero__subtitle">
-          An editorial chronicle of Blissville Terraces&mdash;where structural
+          An editorial chronicle of Blissville Terraces - where structural
           integrity meets visionary design. Follow the journey from
           groundbreaking to grand unveiling.
         </p>
