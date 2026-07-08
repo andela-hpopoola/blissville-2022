@@ -115,37 +115,23 @@ const BLOG_POSTS = [
   },
   {
     id: 9,
-    title:
-      'Landlords, Omonile, and Floods: Why Your Lagos House Hunt is Actually a Search for Peace',
+    title: 'Some Opportunities Only Knock Once',
     excerpt:
-      'Buying property in Lagos is about more than finding a beautiful house. Learn how smart infrastructure, strong communities, and verified titles can protect your investment and give you lasting peace of mind.',
-    image: '/assets/img/blog/lagos-house-hunt-peace.jpg',
-    slug: 'buy-property-in-lagos-avoid-landlords-omonile-and-floods',
-    category: BLOG_CATEGORIES.ADVISORY,
+      'The best opportunities are rarely obvious at first. Discover why early buyers at Blissville Terraces are securing premium homes, stronger long-term value, and a lifestyle built around quality, wellness, and waterfront living.',
+    image: '/assets/img/blog/some-opportunities-only-knock-once.jpg',
+    slug: 'some-opportunities-only-knock-once',
+    category: BLOG_CATEGORIES.INVESTING,
     readTime: '5 min read',
     date: 'June 18, 2026',
     author: DEFAULT_AUTHOR,
   },
   {
     id: 10,
-    title:
-      'Tired of Lagos Traffic? How Blissville Sangotedo is Changing the Game',
+    title: 'The Sangotedo Advantage: Where Value Still Has Room to Grow',
     excerpt:
-      'Imagine replacing hours in Lekki traffic with a smooth boat ride to Victoria Island. Discover how Blissville Terraces, private water transport, and strategic infrastructure are redefining premium living in Sangotedo.',
-    image: '/assets/img/blog/aerial-view.jpg',
-    slug: 'tired-of-lagos-traffic-how-blissville-sangotedo-is-changing-the-game',
-    category: BLOG_CATEGORIES.LIFESTYLE,
-    readTime: '5 min read',
-    date: 'June 25, 2026',
-    author: DEFAULT_AUTHOR,
-  },
-  {
-    id: 11,
-    title: 'The Sangotedo Advantage: Bypassing the Traffic, Banking the Growth',
-    excerpt:
-      'Discover how Sangotedo is redefining premium living in Lagos through waterfront mobility, rapid infrastructure development, sustainable communities, and one of the city’s strongest long-term investment opportunities.',
-    image: '/assets/img/blog/the-sangotedo-advantage.jpg',
-    slug: 'the-sangotedo-advantage-bypassing-the-traffic-banking-the-growth',
+      "Discover why Sangotedo remains one of Lagos' most compelling investment corridors, where premium living, sustainable design, and significant room for capital appreciation come together before the market reaches maturity.",
+    image: '/assets/img/blog/the-sangotedo-advantages.jpg',
+    slug: 'the-sangotedo-advantage-where-value-still-has-room-to-grow',
     category: BLOG_CATEGORIES.MARKET_DATA,
     readTime: '6 min read',
     date: 'July 02, 2026',
