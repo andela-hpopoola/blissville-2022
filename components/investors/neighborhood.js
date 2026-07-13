@@ -87,7 +87,7 @@ export default function NeighborhoodSection() {
               className="px-5"
               target="_blank"
               rel="noopener noreferrer"
-              href={`https://www.google.com/maps?saddr=My+Location&daddr=6.480150,3.646269`}
+              href={`https://www.google.com/maps?saddr=My+Location&daddr=6.481825421783999,3.648981757671786`}
             >
               View on Google Maps <FaArrowRight size={12} />
             </Button>

@@ -170,6 +170,8 @@ const ContactInfo = () => (
                     <a
                       className="social-circle-btn d-flex align-items-center justify-content-center text-decoration-none"
                       aria-label={`Follow us on ${name}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       {icon}
                       <span className="visually-hidden">{name}</span>

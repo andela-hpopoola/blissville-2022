@@ -28,25 +28,24 @@ const CLARITY_EVENTS = {
   INVESTORS_VIEW_CTA: 'investors_view_cta',
 };
 
-const CURRENT_DEVELOPMENT_PERCENTAGE = 25;
+const CURRENT_DEVELOPMENT_PERCENTAGE = 29;
 
 const DEVELOPMENT_PROGRESS_DATA = {
   percentage: CURRENT_DEVELOPMENT_PERCENTAGE,
-  lastUpdated: 'June 5, 2026',
+  lastUpdated: 'July 1, 2026',
   currentStatusLabel: 'Construction (In Progress)',
   images: [
     {
-      src: '/assets/img/investors/progress/bored-pile-drilling-building-3.jpg',
-      description:
-        'Bored pile drilling and installation works ongoing for Building 3 foundation.',
+      src: 'https://highrachy.s3.us-east-1.amazonaws.com/newsletter/q3/roof-beam.jpg',
+      description: 'Roof Beam and Canopies Formwork in progress for Building 1',
     },
     {
-      src: '/assets/img/investors/progress/pile-cap-concreting-for-building-2.jpg',
-      description: 'Pile Cap Concreting for Building 2 ',
+      src: 'https://highrachy.s3.us-east-1.amazonaws.com/newsletter/q3/ground-beam-formwork.jpg',
+      description: 'Ground Beam Formwork Installation for Building 2',
     },
     {
-      src: '/assets/img/investors/progress/concreting-of-pilecap-on-building-2.jpg',
-      description: 'Concreting of Pilecap on Building 2',
+      src: 'https://highrachy.s3.us-east-1.amazonaws.com/newsletter/q3/ground-beam-rebar.jpg',
+      description: 'Ground beam Rebar Installation for Building 2',
     },
   ],
   phases: [

@@ -61,9 +61,16 @@ export default function DevelopmentProgress({
                   </div>
 
                   <div className="progress-update-info d-flex align-items-center gap-2">
-                    <FaSyncAlt className="sync-spinner text-success" size={10} />
-                    <span className="text-muted" style={{ fontSize: '0.72rem', letterSpacing: '0.04em' }}>
-                      Last Updated: <strong className="text-dark-800">{lastUpdated}</strong>
+                    <FaSyncAlt
+                      className="sync-spinner text-success"
+                      size={10}
+                    />
+                    <span
+                      className="text-muted"
+                      style={{ fontSize: '0.72rem', letterSpacing: '0.04em' }}
+                    >
+                      Last Updated:{' '}
+                      <strong className="text-dark-800">{lastUpdated}</strong>
                     </span>
                   </div>
                 </div>
@@ -94,11 +101,11 @@ export default function DevelopmentProgress({
 
                 <Button
                   color="primary-light"
-                  href="/our-properties/blissville-terraces/4-bedroom-waterview-terrace-duplex#gallery"
+                  href="/our-properties/blissville-terraces/4-bedroom-waterview-terrace-duplex"
                   className="px-4 py-3 d-inline-flex align-items-center gap-2"
                 >
                   <FaPlay size={12} />
-                  View Project Update Images
+                  View Project Page
                 </Button>
               </div>
 
@@ -110,25 +117,45 @@ export default function DevelopmentProgress({
                       modules={[Pagination, Autoplay, A11y]}
                       spaceBetween={0}
                       slidesPerView={1}
-                      pagination={images.length > 1 ? { el: '.progress-swiper-pagination', clickable: true } : false}
-                      autoplay={images.length > 1 ? { delay: 5000, disableOnInteraction: false } : false}
+                      pagination={
+                        images.length > 1
+                          ? {
+                              el: '.progress-swiper-pagination',
+                              clickable: true,
+                            }
+                          : false
+                      }
+                      autoplay={
+                        images.length > 1
+                          ? { delay: 5000, disableOnInteraction: false }
+                          : false
+                      }
                       observer={true}
                       observeParents={true}
                       className="progress-swiper h-100"
-                      onSlideChange={(swiper) => setActiveSlideIndex(swiper.realIndex)}
+                      onSlideChange={(swiper) =>
+                        setActiveSlideIndex(swiper.realIndex)
+                      }
                     >
                       {images.map((img, idx) => (
-                        <SwiperSlide key={idx} className="position-relative h-100">
+                        <SwiperSlide
+                          key={idx}
+                          className="position-relative h-100"
+                        >
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={img.src}
-                            alt={img.description || `Development progress ${idx + 1}`}
+                            alt={
+                              img.description ||
+                              `Development progress ${idx + 1}`
+                            }
                             className="progress-img"
                           />
                         </SwiperSlide>
                       ))}
 
-                      {(images.length > 1 || images[activeSlideIndex]?.description) && (
+                      {(images.length > 1 ||
+                        images[activeSlideIndex]?.description) && (
                         <div className="progress-info-card">
                           {images[activeSlideIndex]?.description && (
                             <p className="progress-desc-text">
