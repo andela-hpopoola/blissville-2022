@@ -160,6 +160,12 @@ export default function SingleProjectPage({ project, featuredProperties }) {
                     </span>
                   </li>
                   <li>
+                    <span className="list-dotted__label">Title </span>
+                    <span className="list-dotted__value">
+                      Certificate of Occupancy (C of O)
+                    </span>
+                  </li>
+                  <li>
                     <span className="list-dotted__label">Prices From </span>
                     <span className="list-dotted__value">
                       {getPrice(startingPrice)}

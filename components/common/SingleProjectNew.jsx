@@ -8,12 +8,12 @@ import { FaMapMarkerAlt, FaArrowRight } from 'react-icons/fa';
 
 const getStatusIndicatorColor = (status) => {
   const mapping = {
-    '0': '#eab308', // IN_VIEW -> Vibrant Gold
-    '1': '#a855f7', // STARTED -> Purple
-    '2': '#06b6d4', // IN_PROGRESS -> Cyan
-    '3': '#3b82f6', // ALMOST_COMPLETED -> Blue
-    '4': '#10b981', // COMPLETED -> Vibrant Emerald Green
-    '5': '#ef4444', // NOT_AVAILABLE -> Red
+    0: '#eab308', // IN_VIEW -> Vibrant Gold
+    1: '#a855f7', // STARTED -> Purple
+    2: '#06b6d4', // IN_PROGRESS -> Cyan
+    3: '#3b82f6', // ALMOST_COMPLETED -> Blue
+    4: '#10b981', // COMPLETED -> Vibrant Emerald Green
+    5: '#ef4444', // NOT_AVAILABLE -> Red
   };
   return mapping[status] || '#3b82f6';
 };
@@ -34,7 +34,7 @@ const SingleProject = ({ id, attributes }) => {
   const totalUnits = slug === 'blissville-apartments' ? 12 : 14;
   const statusLabel = PROJECT_STATUS_NAME[status] || status;
   const dotColor = getStatusIndicatorColor(status);
-  const totalPrice = attributes.totalPrice || attributes.maxPrice || startingPrice * 2.5; // fallback for display demo
+  // const totalPrice = attributes.totalPrice || attributes.maxPrice || startingPrice * 2.5; // fallback for display demo
 
   return (
     <div className="premium-project-card">
@@ -68,9 +68,9 @@ const SingleProject = ({ id, attributes }) => {
               priority
             />
             <div className="ppc-image__overlay" />
-            
+
             {/* World-Class Glassmorphic Badge */}
-            <div 
+            <div
               className="position-absolute top-0 start-0 m-3 z-5 d-flex align-items-center gap-2"
               style={{
                 padding: '0.45rem 0.95rem',
@@ -82,7 +82,7 @@ const SingleProject = ({ id, attributes }) => {
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25)',
               }}
             >
-              <span 
+              <span
                 className="d-inline-block"
                 style={{
                   width: '8px',
@@ -90,10 +90,10 @@ const SingleProject = ({ id, attributes }) => {
                   borderRadius: '50%',
                   backgroundColor: dotColor,
                   boxShadow: `0 0 8px ${dotColor}`,
-                  animation: 'status-pulse 2s infinite ease-in-out'
+                  animation: 'status-pulse 2s infinite ease-in-out',
                 }}
               />
-              <span 
+              <span
                 style={{
                   fontSize: '0.7rem',
                   fontWeight: 700,
@@ -117,7 +117,9 @@ const SingleProject = ({ id, attributes }) => {
               <h4 className="ppc-name">{name}</h4>
               <p className="ppc-location">
                 <FaMapMarkerAlt className="text-primary me-1" />
-                <span>{city}, {state}</span>
+                <span>
+                  {city}, {state}
+                </span>
               </p>
             </div>
 
@@ -132,12 +134,16 @@ const SingleProject = ({ id, attributes }) => {
                 <span className="ppc-info-value">{totalUnits} Units</span>
               </li>
               <li>
-                <span className="ppc-info-label">Starting Price</span>
-                <span className="ppc-info-value ppc-info-value--price fs-6">{getPrice(startingPrice)}</span>
+                <span className="ppc-info-label">Price</span>
+                <span className="ppc-info-value ppc-info-value--price fs-6">
+                  {getPrice(startingPrice)}
+                </span>
               </li>
               <li>
-                <span className="ppc-info-label">Total Price</span>
-                <span className="ppc-info-value fs-6 fw-bold">{getPrice(totalPrice)}</span>
+                <span className="ppc-info-label">Title </span>
+                <span className="ppc-info-value fs-6 fw-bold">
+                  Certificate of Occupancy (C of O)
+                </span>
               </li>
               <li>
                 <span className="ppc-info-label">Delivery</span>

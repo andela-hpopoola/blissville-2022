@@ -76,7 +76,7 @@ const IntroTextForm = () => {
 
   const equityOptions = ['₦19,125,000.00', '₦38,250,000.00', 'OTHERS'];
 
-  const guaranteedOptions = ['₦10M - ₦19.9M', '₦20M and Above'];
+  const guaranteedOptions = ['₦10M - ₦19.9M', '₦20M and Above', 'OTHERS'];
 
   const currentOptions =
     investmentType === 'guaranteed'
@@ -110,7 +110,7 @@ const IntroTextForm = () => {
                     Get fixed returns in 12 months with a clear and predictable
                     payout.
                   </p>
-                  <h4 className="investment-option__price">From ₦10M</h4>
+                  <h4 className="investment-option__price">&nbsp;</h4>
                 </div>
 
                 {investmentType === 'guaranteed' && (

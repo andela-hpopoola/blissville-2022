@@ -738,6 +738,10 @@ export function ProjectOverviewDetails({ property, project }) {
       value: getLocationFromAddress(project),
     },
     {
+      label: 'Title',
+      value: 'Certificate of Occupancy (C of O)',
+    },
+    {
       label: 'Size',
       value: property?.size ? `${property.size} sqm` : null,
     },
